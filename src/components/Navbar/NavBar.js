@@ -30,6 +30,7 @@ function CerrarSesion() {
     const cookies = new Cookies();
     cookies.remove('id', { path: '/' });
     cookies.remove('logged', { path: '/' });
+    cookies.remove('username', { path: '/' });
     window.location.reload();
 }
 

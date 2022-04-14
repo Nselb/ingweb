@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 import '../css/Login.css';
+import Navbar from '../components/Navbar/NavBar';
 
 function Login() {
 
@@ -52,29 +53,27 @@ function Login() {
     })
 
     return (
-        <div className='containerPrincipal'>
-            <div className='containerLogin'>
-                <div className='form-group'>
-                    <label>Usuario: </label>
-                    <br />
-                    <input
-                        type='text'
-                        className='form-control'
-                        name='username'
-                        onChange={handleChange}
-                    />
-                    <br />
-                    <label>Contraseña: </label>
-                    <br />
-                    <input
-                        type='password'
-                        className='form-control'
-                        name='password'
-                        onChange={handleChange}
-                    />
-                    <br />
-                    <button className='btn btn-primary' onClick={() => iniciarSesion()}>Iniciar Sesión</button>
-                </div>
+        <div>
+            <Navbar />
+            <div className='container-fluid-sm px-1 py-5 mx-auto w-25 align-middle'>
+                <form className='form-card border border rounded p-2 bg-light'>
+                    <h1 className='display-6 text-center'>Iniciar Sesión</h1>
+                    <div className='row g-2 m-auto'>
+                        <div className='col'>
+                            <input type='text' placeholder='Nombre de usuario' className='form-control' name='username' onChange={handleChange} />
+                        </div>
+                    </div>
+                    <div className='row g-2 m-auto'>
+                        <div className='col'>
+                            <input type='password' placeholder='Contraseña' className='form-control' name='password' onChange={handleChange} />
+                        </div>
+                    </div>
+                    <div className='row g-2 m-auto'>
+                        <div className='col text-center'>
+                            <button className='btn btn-primary' onClick={() => iniciarSesion()}>Iniciar Sesión</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     )

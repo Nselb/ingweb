@@ -99,8 +99,9 @@ function CRUD() {
     useEffect(() => {
         getUsuarios();
         if (!cookies.get('logged')) {
-            navigate('/login')
+            navigate('/')
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
