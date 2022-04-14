@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import md5 from 'md5';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar/NavBar';
-import md5 from 'md5';
+import React, { useState, useEffect } from 'react'
 
 export default function Register() {
 

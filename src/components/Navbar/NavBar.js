@@ -1,7 +1,7 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
-import { Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink, NavBtnLinkDanger, NavBtnLinkSuccess } from './NavbarElements';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink, NavBtnLinkDanger, NavBtnLinkSuccess } from './NavbarElements';
 
 
 function LoginNavBar() {

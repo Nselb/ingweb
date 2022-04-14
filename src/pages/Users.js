@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import Cookies from 'universal-cookie';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar/NavBar';
+import React, { useState, useEffect } from 'react'
+import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
 
 function CRUD() {
