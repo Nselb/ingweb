@@ -5,11 +5,11 @@ import Cookies from 'universal-cookie';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar/NavBar';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 function Login() {
 
-    const baseUrl = 'https://localhost:7298/api/users';
+    const baseUrl = 'https://localhost:7298/api/';
     const cookies = new Cookies();
     const navigate = useNavigate();
 
@@ -23,22 +23,24 @@ function Login() {
             ...form,
             [name]: value
         });
-        console.log(value);
     }
 
     const iniciarSesion = async () => {
-        await axios.get(baseUrl + `/${form.username}/${md(form.password)}`)
+        await axios.get(`${baseUrl}users/${form.username}/${md(form.password)}`)
             .then(r => {
+                cookies.set('user', r.data[0])
+                console.log(cookies.get('user'));
                 return r.data;
             })
             .then(r => {
                 if (r.length > 0) {
                     var res = r[0];
-                    console.log(res);
-                    cookies.set('id', res.userId, { path: '/' });
-                    cookies.set('username', res.userName, { path: '/' });
-                    cookies.set('logged', true, { path: '/' });
-                    navigate('/users')
+                    axios.get(`${baseUrl}summoner/${res.summonerID}`)
+                        .then(r => {
+                            cookies.set('summoner', r.data)
+                            console.log(cookies.get('summoner'));
+                            navigate('/')
+                        })
                 }
             })
             .catch(e => {
@@ -46,17 +48,11 @@ function Login() {
             })
     }
 
-    useEffect(() => {
-        if (cookies.get('logged')) {
-            navigate('/users')
-        }
-    })
-
     return (
         <div>
             <Navbar />
             <div className='container-fluid-sm px-1 py-5 mx-auto w-25 align-middle'>
-                <form className='form-card border border rounded p-2 bg-light'>
+                <div className='form-card border border rounded p-2 bg-light'>
                     <h1 className='display-6 text-center'>Iniciar Sesión</h1>
                     <div className='row g-2 m-auto'>
                         <div className='col'>
@@ -73,7 +69,7 @@ function Login() {
                             <button className='btn btn-primary' onClick={() => iniciarSesion()}>Iniciar Sesión</button>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     )

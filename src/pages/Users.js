@@ -12,16 +12,19 @@ function CRUD() {
     const cookies = new Cookies();
     const navigate = useNavigate();
 
-    const baseUrl = 'https://localhost:7298/api/users';
+    const baseUrl = 'https://localhost:7298/api/';
     const [data, setData] = useState([]);
     const [modalInsertar, setModalInsertar] = useState(false);
     const [modalEditar, setModalEditar] = useState(false);
     const [modalEliminar, setModalEliminar] = useState(false);
     const [selectedUser, setSelectedUser] = useState({
-        userId: '',
-        userLoginName: '',
-        userName: '',
-        userLastName: ''
+        usuarioID: 0,
+        regionID: '',
+        summonerID: '',
+        usuarioName: '',
+        usuarioPassword: '',
+        usuarioEmail: '',
+        usuarioAdmin: false
     })
 
     const handleChange = e => {
@@ -43,7 +46,7 @@ function CRUD() {
     }
 
     const getUsuarios = async () => {
-        await axios.get(baseUrl)
+        await axios.get(`${baseUrl}users`)
             .then(response => {
                 setData(response.data);
             }).catch(e => {
@@ -53,7 +56,7 @@ function CRUD() {
 
     const postUsuarios = async () => {
         delete selectedUser.userId;
-        await axios.post(baseUrl, selectedUser)
+        await axios.post(`${baseUrl}users`, selectedUser)
             .then(response => {
                 setData(data.concat(response.data));
                 toogleModalInsertar();
@@ -63,7 +66,7 @@ function CRUD() {
     }
 
     const putUsuarios = async () => {
-        await axios.put(baseUrl + '/' + selectedUser.userId, selectedUser)
+        await axios.put(`${baseUrl}users/${selectedUser.usuarioID}`, selectedUser)
             .then(response => {
                 var res = response.data;
                 var aux = data;
@@ -82,8 +85,9 @@ function CRUD() {
     }
 
     const deleteUsuario = async () => {
-        await axios.delete(baseUrl + '/' + selectedUser.userId)
+        await axios.delete(`${baseUrl}users/${selectedUser.usuarioID}`)
             .then(response => {
+                axios.delete(`${baseUrl}summoner/${selectedUser.summonerID}`)
                 getUsuarios();
                 toogleModalEliminar();
             }).catch(e => {
@@ -96,16 +100,27 @@ function CRUD() {
         (caso === 'Editar') ? toogleModalEditar() : toogleModalEliminar();
     }
 
+    function nameFormatter(value) {
+        var str = '';
+        var i = 0;
+        for (i = 0; i < value.length; i++) {
+            str = str + '•';
+        }
+        return str;
+    }
+
     useEffect(() => {
         getUsuarios();
-        if (!cookies.get('logged')) {
+        if (!cookies.get('user')) {
+            navigate('/')
+        } else if (!cookies.get('user').usuarioAdmin) {
             navigate('/')
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+
     return (
-        
+
         <div className='App'>
             <Navbar />
             <br /><br />
@@ -115,21 +130,24 @@ function CRUD() {
                 <thead>
                     <tr>
                         <th className='text-center'>ID</th>
-                        <th className='text-center'>Username</th>
+                        <th className='text-center'>Region</th>
+                        <th className='text-center'>SummonerID</th>
                         <th className='text-center'>Nombre</th>
-                        <th className='text-center'>Apellido</th>
+                        <th className='text-center'>E-Mail</th>
                         <th className='text-center'>Contraseña</th>
-                        <th className='text-center'>Acciones</th>
+                        <th className='text-center'>Admin</th>
                     </tr>
                 </thead>
                 <tbody>
                     {data.map(user => (
-                        <tr key={user.userId}>
-                            <td className='text-center'>{user.userId}</td>
-                            <td className='text-center'>{user.userLoginName}</td>
-                            <td className='text-center'>{user.userName}</td>
-                            <td className='text-center'>{user.userLastName}</td>
-                            <td className='text-center'>{user.userPassword}</td>
+                        <tr key={user.usuarioID}>
+                            <td className='text-center'>{user.usuarioID}</td>
+                            <td className='text-center'>{user.regionID}</td>
+                            <td className='text-center'>{user.summonerID}</td>
+                            <td className='text-center'>{user.usuarioName}</td>
+                            <td className='text-center'>{user.usuarioEmail}</td>
+                            <td className='text-center'>{nameFormatter(user.usuarioPassword)}</td>
+                            <td className='text-center'>{user.usuarioAdmin ? 'Si' : 'No'}</td>
                             <td className='text-center'>
                                 <button className='btn btn-primary ms-1' onClick={() => seleccionarUsuario(user, 'Editar')}>Editar</button>
                                 <button className='btn btn-danger ms-1' onClick={() => seleccionarUsuario(user, 'Eliminar')}>Eliminar</button>

@@ -4,6 +4,7 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Users from '../pages/Users';
+import Profile from '../pages/Profile';
 
 function Rutas() {
 
@@ -14,6 +15,7 @@ function Rutas() {
                 <Route path='/register' element={<Register />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/users' element={<Users />} />
+                <Route path='/perfil' element={<Profile />} />
             </Routes>
         </BrowserRouter >
     )
