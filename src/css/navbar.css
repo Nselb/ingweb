@@ -1,0 +1,134 @@
+/*#region Nav Bar Styles*/
+nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.87);
+    box-shadow: 1px 1px 10px 0 rgb(56, 56, 56);
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
+    list-style: none;
+    overflow: hidden;
+    align-items: center;
+    padding: 4px;
+}
+
+li {
+    margin: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+li a {
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 1px rgb(0, 0, 0), 1px 1px 1px rgb(0, 0, 0);
+    font-size: 18px;
+}
+
+nav input {
+    border: none;
+    padding: 3px;
+    background-color: rgba(107, 107, 107, 0.699);
+}
+
+nav select {
+    appearance: none;
+    border: none;
+    margin: 0;
+    text-align: center;
+    padding: 3px;
+    cursor: pointer;
+    background-color: rgba(107, 107, 107, 0.699);
+}
+
+.btn-search {
+    background-color: rgba(194, 194, 194, 0.699);
+    height: 100%;
+    border: none;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.btn-search img {
+    width: 12px;
+    padding: 0 5px 0;
+}
+
+.btn_navbar {
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    background-color: rgb(33, 34, 33);
+    border-radius: 200px;
+    outline: none;
+}
+
+.btn_navbar:hover {
+    border: none;
+    color: white;
+    background-color: rgb(0, 0, 0);
+}
+
+.logo {
+    margin: 0 50px;
+}
+
+.logo img {
+    height: 45px;
+}
+
+/*#endregion Navbar Styles*/
+
+/*#region Footer Styles*/
+footer {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.87);
+}
+
+.footer_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer_box {
+    display: flex;
+    flex-direction: column;
+    padding: 0 30px;
+}
+
+.footer_box h2 {
+    margin-bottom: 0;
+    color: #bebebe;
+    font-weight: 700;
+}
+
+.footer_box p {
+    color: #7a7a7a;
+}
+
+.footer_box.copyright {
+    display: flex;
+    width: 100%;
+    padding: 0;
+    align-items: center;
+    border-top: dotted 1px;
+}
+
+.footer_box.copyright p {
+    display: inline;
+    width: fit-content;
+    padding: 0;
+}
+
+/*#endregion Footer Styles*/
