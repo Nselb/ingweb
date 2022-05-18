@@ -6,10 +6,10 @@ function NotLogged() {
     return (
         <>
             <li>
-                <button className="btn_navbar" id="btn_login">Iniciar sesión</button>
+                <a className="btn_navbar" href="/login">Iniciar sesión</a>
             </li>
             <li>
-                <button className="btn_navbar" id="btn_register">Registrarse</button>
+                <a className="btn_navbar" href="/register">Registrarse</a>
             </li>
         </>
     );
@@ -19,10 +19,10 @@ function Logged() {
     return (
         <>
             <li>
-                <button className="btn_navbar" id="btn_profile">Perfil</button>
+                <a className="btn_navbar" href="/profile">Perfil</a>
             </li>
             <li>
-                <button className="btn_navbar" id="btn_logout">Cerrar sesión</button>
+                <button className="btn_navbar">Cerrar sesión</button>
             </li>
         </>
     );
@@ -42,7 +42,7 @@ function Navbar() {
                         <a href="/">Inicio</a>
                     </li>
                     <li>
-                        <a href="/campeones">Campeones</a>
+                        <a href="/champions">Campeones</a>
                     </li>
                 </ul>
                 <ul>

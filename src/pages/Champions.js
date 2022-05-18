@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/NavFooter';
 
-function Users() {
+function Champions() {
     return (
         <>
             <Navbar />
@@ -9,4 +9,4 @@ function Users() {
     );
 }
 
-export default Users;
+export default Champions;

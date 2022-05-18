@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 /*#region Nav Bar Styles*/
 nav {
     display: flex;
@@ -8,7 +12,7 @@ nav {
     box-shadow: 1px 1px 10px 0 rgb(56, 56, 56);
 }
 
-ul {
+nav ul {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -19,24 +23,31 @@ ul {
     padding: 4px;
 }
 
-li {
+nav li {
     margin: 10px;
 }
 
-a {
+nav a {
     text-decoration: none;
 }
 
-li a {
+nav li a {
     color: rgb(255, 255, 255);
-    text-shadow: 1px 1px 1px rgb(0, 0, 0), 1px 1px 1px rgb(0, 0, 0);
+    text-shadow: 1px 1px 1px black, 1px 1px 1px black;
     font-size: 18px;
 }
 
 nav input {
     border: none;
-    padding: 3px;
+    padding: 10px;
     background-color: rgba(107, 107, 107, 0.699);
+    outline: none;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+nav input:focus {
+    box-shadow: 1px 2px 3px black;
 }
 
 nav select {
@@ -44,22 +55,24 @@ nav select {
     border: none;
     margin: 0;
     text-align: center;
-    padding: 3px;
+    padding: 10px;
     cursor: pointer;
     background-color: rgba(107, 107, 107, 0.699);
+    outline: none;
 }
 
 .btn-search {
     background-color: rgba(194, 194, 194, 0.699);
     height: 100%;
     border: none;
-    padding: 3px;
+    padding: 10px;
     cursor: pointer;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .btn-search img {
-    width: 12px;
-    padding: 0 5px 0;
+    width: 14px;
 }
 
 .btn_navbar {
@@ -75,6 +88,7 @@ nav select {
     border: none;
     color: white;
     background-color: rgb(0, 0, 0);
+    cursor: pointer;
 }
 
 .logo {
@@ -83,6 +97,7 @@ nav select {
 
 .logo img {
     height: 45px;
+    width: 45px;
 }
 
 /*#endregion Navbar Styles*/

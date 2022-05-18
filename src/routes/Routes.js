@@ -5,7 +5,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Users from '../pages/Users';
 import Profile from '../pages/Profile';
-import Campeones from '../pages/Campeones'
+import Champions from '../pages/Champions';
 
 function Rutas() {
 
@@ -16,8 +16,8 @@ function Rutas() {
                 <Route path='/register' element={<Register />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/users' element={<Users />} />
-                <Route path='/perfil' element={<Profile />} />
-                <Route path='/campeones' element={<Campeones />} />
+                <Route path='/profile' element={<Profile />} />
+                <Route path='/champions' element={<Champions />} />
             </Routes>
         </BrowserRouter >
     )

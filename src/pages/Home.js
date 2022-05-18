@@ -1,10 +1,10 @@
 import React from 'react'
-import Navbar, { Footer } from '../components/NavBar'
+import Navbar, { Footer } from '../components/NavFooter'
 import '../css/home.css'
 
-export default function Home() {
+function Home() {
     return (
-        <body>
+        <>
             <Navbar />
             <div className='container'>
                 <h1>
@@ -30,6 +30,8 @@ export default function Home() {
                 </ul>
             </div>
             <Footer />
-        </body>
+        </>
     )
 }
+
+export default Home;
