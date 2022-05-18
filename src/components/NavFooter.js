@@ -1,6 +1,6 @@
 import React from "react";
 import '../css/navbar.css';
-import logo from '../images/logo192.png'
+import logo from '../images/logo192.png';
 
 function NotLogged() {
     return (
@@ -46,7 +46,7 @@ function Navbar() {
                     </li>
                 </ul>
                 <ul>
-                    <li>
+                    <li className="searchbar">
                         <input type="text" name="summoner_nav" id="summonername_nav_id" placeholder="Buscar..." />
                         <select>
                             <option value="LA1">LAN</option>
@@ -62,7 +62,7 @@ function Navbar() {
                             <option value="RU">RU</option>
                         </select>
                         <button className="btn-search">
-                            <img src="https://cdn-icons-png.flaticon.com/512/54/54481.png" alt="searc hicon" />
+                            <img src="https://icon-library.com/images/search-icon-transparent/search-icon-transparent-27.jpg" alt="searc hicon" />
                         </button>
                     </li>
                 </ul>

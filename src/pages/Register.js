@@ -1,12 +1,17 @@
 import React from 'react';
 import Navbar, { Footer } from '../components/NavFooter';
 import '../css/register.css'
+import logo from '../images/logo192.png';
 
 function Register() {
     return (
         <>
             <Navbar />
             <div className="form_container">
+                <img src={logo} alt="logo Poro Opresor" style={{ width: '100px' }} />
+                <h2>
+                    Registrarse en Poro Opresor
+                </h2>
                 <form>
                     <div className='container_mail'>
                         <input type="email" placeholder='E-mail' />
