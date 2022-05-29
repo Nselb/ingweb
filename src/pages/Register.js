@@ -1,9 +1,46 @@
-import React from 'react';
 import Navbar, { Footer } from '../components/NavFooter';
 import '../css/register.css'
 import logo from '../images/logo192.png';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Register() {
+
+    const baseUrl = 'https://localhost:7163'
+
+    const [user, setUser] = useState({
+        userId: 0,
+        summonerId: '',
+        regionId: 'LA1',
+        summonerName: '',
+        email: '',
+        userPassword: '',
+        isAdmin: false
+    })
+
+    const handleChange = e => {
+        const { name, value } = e.target
+        setUser({
+            ...user,
+            [name]: value
+        })
+    }
+
+    const handleSubmit = async event => {
+        event.preventDefault();
+        delete user.userId
+        await axios.post(`${baseUrl}/api/Users`, user)
+            .then(r => {
+                console.log(r.data);
+                if (r) {
+                    
+                }
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
+
     return (
         <>
             <Navbar />
@@ -12,13 +49,13 @@ function Register() {
                 <h2>
                     Registrarse en Poro Opresor
                 </h2>
-                <form>
+                <form method='post' onSubmit={handleSubmit}>
                     <div className='container_mail'>
-                        <input type="email" placeholder='E-mail' />
-                        <input type="password" name="password" id="passwordid" placeholder='Contraseña' />
+                        <input type="email" name='email' placeholder='E-mail' onChange={handleChange} />
+                        <input type="password" name="userPassword" placeholder='Contraseña' onChange={handleChange} />
                         <div className="form_summoner_container">
-                            <input type="text" placeholder='Nombre de invocador' />
-                            <select className='register_select'>
+                            <input type="text" placeholder='Nombre de invocador' name='summonerName' onChange={handleChange} />
+                            <select className='register_select' name='regionId' onChange={handleChange}>
                                 <option value="LA1">LAN</option>
                                 <option value="LA2">LAS</option>
                                 <option value="BR1">BR</option>
