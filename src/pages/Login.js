@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar, { Footer } from "../components/NavFooter";
 import logo from '../images/logo192.png';
 
+
+
 function Login() {
     return (
         <>
