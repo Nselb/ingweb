@@ -1,158 +1,107 @@
-* {
-    box-sizing: border-box;
-}
-
-/*#region Nav Bar Styles*/
-nav {
+.nav {
+    background: gray;
+    box-shadow: 0px 5px darkgray;
+    height: 7rem;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
-    background-color: rgba(0, 0, 0, 0.605);
-    box-shadow: 1px 1px 10px 0 rgb(56, 56, 56);
-}
-
-nav ul {
-    display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    margin: 0;
-    list-style: none;
-    overflow: hidden;
-    align-items: center;
-    padding: 4px;
+    font-size: 1.2rem;
 }
 
-nav li {
-    margin: 10px;
-}
 
-nav a {
-    text-decoration: none;
-}
-
-nav li a {
-    color: rgb(255, 255, 255);
-    text-shadow: 1px 1px 1px black, 1px 1px 1px black;
-    font-size: 18px;
-}
-
-nav input {
-    border: none;
-    padding: 10px;
-    background-color: rgba(107, 107, 107, 0.699);
-    outline: none;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
-
-nav input:focus {
-    box-shadow: 1px 2px 3px black;
-}
-
-nav select {
-    appearance: none;
-    border: none;
-    margin: 0;
-    text-align: center;
-    padding: 10px;
-    cursor: pointer;
-    background-color: rgba(107, 107, 107, 0.699);
-    outline: none;
-}
-
-.searchbar {
+.nav--left {
     display: flex;
-    align-items: center;
-}
-
-.btn-search {
-    background-color: rgba(194, 194, 194, 0.699);
     height: 100%;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    justify-content: center;
+    width: 30rem;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.nav--center {
     display: flex;
+    height: 100%;
+    justify-content: space-around;
 }
 
-.btn-search img {
-    height: 24px;
-    width: 24px;
-    margin: 7px;
+.nav--right {
+    display: flex;
+    height: 100%;
+    width: 30rem;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
-.btn_navbar {
+.nav__searchbar {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.searchbar__input {
+    height: 50%;
     border: none;
-    color: white;
-    padding: 10px 30px;
-    background-color: rgb(33, 34, 33);
-    border-radius: 200px;
+    padding-left: 25px;
+    outline: none;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+.searchbar__select {
+    height: 50%;
+    appearance: none;
+    text-align: center;
+    border: none;
     outline: none;
 }
 
-.btn_navbar:hover {
-    border: none;
-    color: white;
-    background-color: rgb(0, 0, 0);
+.searchbar__select:hover,
+.searchbar__btn:hover {
     cursor: pointer;
 }
 
-.logo {
-    margin: 0 50px;
+.searchbar__btn {
+    height: 50%;
+    width: 3.25rem;
+    border: none;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
 }
 
-.logo img {
-    height: 45px;
-    width: 45px;
+.searchbar__img {
+    height: 50%;
 }
 
-/*#endregion Navbar Styles*/
-
-/*#region Footer Styles*/
-footer {
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.605);;
+.nav__logo {
+    height: 75%;
 }
 
-.footer_container {
+.nav__img {
+    height: 100%;
+}
+
+.nav__link {
+    color: black;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.footer_box {
-    display: flex;
-    flex-direction: column;
-    padding: 0 30px;
-}
-
-.footer_box h2 {
-    margin-bottom: 0;
-    color: #bebebe;
-    font-weight: 700;
-}
-
-.footer_box p {
-    color: #7a7a7a;
-}
-
-.footer_box.copyright {
-    display: flex;
-    width: 100%;
-    padding: 0;
+    text-decoration: none;
+    height: 3.5rem;
+    width: 10rem;
+    background-color: aliceblue;
+    border-radius: 25px;
+    justify-content: center;
     align-items: center;
-    border-top: dotted 1px;
 }
 
-.footer_box.copyright p {
-    display: inline;
+.nav__link__profile {
     width: fit-content;
-    padding: 0;
+    justify-content: start;
 }
 
-/*#endregion Footer Styles*/
+.nav__link__profile img {
+    border-radius: 25px;
+    margin: 8px;
+}
+
+.nav__link__profile h4 {
+    margin: 0 15px 0 0;
+}

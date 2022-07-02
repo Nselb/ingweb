@@ -6,6 +6,8 @@ import Register from '../pages/Register';
 import Users from '../pages/Users';
 import Profile from '../pages/Profile';
 import Champions from '../pages/Champions';
+import Match from '../pages/Match';
+import TopMatches from '../pages/TopMatches';
 
 function Rutas() {
 
@@ -18,6 +20,8 @@ function Rutas() {
                 <Route path='/users' element={<Users />} />
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/champions' element={<Champions />} />
+                <Route path='/match/:id' element={<Match />} />
+                <Route path='/topmatches' element={<TopMatches />} />
             </Routes>
         </BrowserRouter >
     )

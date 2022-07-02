@@ -1,31 +1,79 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import Navbar, { Footer } from "../components/NavFooter";
-import logo from '../images/logo192.png';
+import '../css/Form.css'
 
 
 
 function Login() {
 
+    const baseUrl = 'https://localhost:7163'
+    const logo = '/images/logo192.png'
+    const navigate = useNavigate();
+    const [user, setUser] = useState({
+        email: '',
+        userPassword: ''
+    });
+
     useEffect(() => {
-        localStorage.setItem('user', {})
-    }, [])
-    
+        if (localStorage.getItem('user')) {
+            navigate('/')
+        }
+    }, [navigate])
+
+    const handleChange = e => {
+        const { name, value } = e.target
+        setUser({
+            ...user,
+            [name]: value
+        })
+    }
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        await axios.get(`${baseUrl}/api/Users/${user.email}/${user.userPassword}`)
+            .then(r => {
+                if (r.data) {
+                    axios.get(`${baseUrl}/api/Summoners/${r.data.summonerId}`)
+                        .then(res => {
+                            localStorage.setItem('user', JSON.stringify({
+                                email: r.data.email,
+                                regionId: r.data.regionId,
+                                summonerName: r.data.summonerName,
+                                summonerId: r.data.summonerId,
+                                puuid: res.data.puuid,
+                                summonerLevel: res.data.summonerLevel,
+                                iconId: res.data.profileIconID
+                            }))
+                            navigate('/')
+                        })
+                }
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
 
     return (
         <>
             <Navbar />
-            <div className="form_container">
-                <img src={logo} alt="logo Poro Opresor" style={{ width: '100px' }} />
-                <h2>
-                    Iniciar Sesion en Poro Opresor
-                </h2>
-                <form method='get'>
-                    <div className='container_mail'>
-                        <input type="email" placeholder='E-mail' />
-                        <input type="password" name="password" id="passwordid" placeholder='Contraseña' />
-                        <button type="submit">Iniciar Sesión</button>
+            <div className='form__body'>
+                <div className='form__container'>
+                    <div className='form__header'>
+                        <img src={logo} alt="logo Poro Opresor" style={{ width: '100px' }} />
+                        <h2>
+                            Iniciar Sesion en Poro Opresor
+                        </h2>
                     </div>
-                </form>
+                    <form method='get' onSubmit={handleSubmit}>
+                        <div className='form'>
+                            <input className='form__input' type="email" name='email' placeholder='E-mail' onChange={handleChange} />
+                            <input className='form__input' type="password" name="userPassword" placeholder='Contraseña' onChange={handleChange} />
+                            <button className='form__btn' type="submit">Iniciar Sesión</button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <Footer />
         </>

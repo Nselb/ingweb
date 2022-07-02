@@ -1,0 +1,70 @@
+.form__body {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.form__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: gray;
+    border-radius: 25px;
+    border: 3px solid darkgray;
+    margin: 50px;
+    padding: 50px;
+    font-size: 1rem;
+}
+
+.form__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form__input {
+    padding: 0.5rem 2rem;
+    border-radius: 25px;
+    border: 1px solid lightgray;
+    outline: none;
+}
+
+.form__input-select__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.form__input--select {
+    border-end-end-radius: 0;
+    border-start-end-radius: 0;
+    border: none;
+}
+
+.form__select {
+    padding: .5rem 0.4rem;
+    outline: none;
+    appearance: none;
+    text-align: center;
+    border-radius: 0 25px 25px 0;
+    border: none;
+    cursor: pointer;
+}
+
+.form__btn {
+    padding: 0.5rem 2rem;
+    border-radius: 25px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+}

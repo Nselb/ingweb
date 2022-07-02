@@ -1,54 +1,63 @@
 import React from "react";
-import '../css/navbar.css';
-import logo from '../images/logo192.png';
+import '../css/Navbar.css'
+import '../css/Footer.css'
 
 function NotLogged() {
     return (
         <>
             <li>
-                <a className="btn_navbar" href="/login">Iniciar sesión</a>
+                <a href="/login" className="nav__link">Iniciar sesión</a>
             </li>
             <li>
-                <a className="btn_navbar" href="/register">Registrarse</a>
+                <a href="/register" className="nav__link" >Registrarse</a>
             </li>
         </>
     );
 }
 
 function Logged() {
+    const user = JSON.parse(localStorage.getItem('user'))
+    const onCerrarSesion = () => {
+        localStorage.removeItem('user')
+    }
     return (
         <>
             <li>
-                <a className="btn_navbar" href="/profile">Perfil</a>
+                <a className="nav__link nav__link__profile" href="/profile">
+                    <img src={`http://ddragon.leagueoflegends.com/cdn/12.10.1/img/profileicon/${user.iconId}.png`} alt="Summoner icon"
+                        style={{ 'width': '50px' }} />
+                    <h4>{user.summonerName}</h4>
+                </a>
             </li>
             <li>
-                <button className="btn_navbar">Cerrar sesión</button>
+                <a className="nav__link" href="/" onClick={onCerrarSesion}>Cerrar sesión</a>
             </li>
         </>
     );
 }
 
 function Navbar() {
+    const logo = '/images/logo192.png'
     return (
         <header>
-            <nav>
-                <ul>
-                    <li className="logo">
+            <nav className="nav">
+                <ul className="nav--left">
+                    <li className="nav__logo">
                         <a href="/">
-                            <img src={logo} alt="logo" />
+                            <img className="nav__img" src={logo} alt="logo" />
                         </a>
                     </li>
                     <li>
-                        <a href="/">Inicio</a>
+                        <a href="/" className="nav__link">Inicio</a>
                     </li>
                     <li>
-                        <a href="/champions">Campeones</a>
+                        <a href="/champions" className="nav__link">Campeones</a>
                     </li>
                 </ul>
-                <ul>
-                    <li className="searchbar">
-                        <input type="text" name="summoner_nav" id="summonername_nav_id" placeholder="Buscar..." />
-                        <select>
+                <ul className="nav--center">
+                    <li className="nav__searchbar">
+                        <input type="text" className="searchbar__input" name="summoner_nav" placeholder="Buscar..." />
+                        <select className="searchbar__select">
                             <option value="LA1">LAN</option>
                             <option value="LA2">LAS</option>
                             <option value="BR1">BR</option>
@@ -61,14 +70,14 @@ function Navbar() {
                             <option value="TR1">TR</option>
                             <option value="RU">RU</option>
                         </select>
-                        <button className="btn-search">
-                            <img src="https://icon-library.com/images/search-icon-transparent/search-icon-transparent-27.jpg" alt="searc hicon" />
+                        <button className="searchbar__btn">
+                            <img className="searchbar__img" src="https://icon-library.com/images/search-icon-transparent/search-icon-transparent-27.jpg" alt="searc hicon" />
                         </button>
                     </li>
                 </ul>
-                <ul className="button-container">
+                <ul className="nav--right">
                     {
-                        false ? <Logged /> : <NotLogged />
+                        localStorage.getItem('user') ? <Logged /> : <NotLogged />
                     }
                 </ul>
             </nav>
@@ -79,8 +88,8 @@ function Navbar() {
 function Footer() {
     return (
         <footer>
-            <div className="footer_container">
-                <div className="footer_box">
+            <div className="footer__container">
+                <div className="footer__about">
                     <h2>About</h2>
                     <p>
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -91,7 +100,7 @@ function Footer() {
                         Eaque eum delectus omnis minus.
                     </p>
                 </div>
-                <div className="footer_box copyright">
+                <div className="footer__copyright">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
                 </div>
             </div>

@@ -1,0 +1,18 @@
+.footer__container {
+    display: flex;
+    flex-direction: column;
+    background-color: gray;
+}
+
+.footer__about {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    padding: 25px;
+}
+
+.footer__copyright {
+    margin: 10px 0 0 0;
+    padding: 5px;
+    border-top: 3px black solid;
+}

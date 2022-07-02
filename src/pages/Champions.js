@@ -1,10 +1,12 @@
 import React from 'react';
-import Navbar from '../components/NavFooter';
+import Navbar, { Footer } from '../components/NavFooter';
 
 function Champions() {
+
     return (
         <>
             <Navbar />
+            <Footer />
         </>
     );
 }

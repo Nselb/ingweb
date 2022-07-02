@@ -1,0 +1,285 @@
+.profile__container {
+    display: flex;
+}
+
+.masteries__container {
+    display: flex;
+    background-color: darkgray;
+    width: fit-content;
+}
+
+.table--masteries {
+    border: 2px solid gray;
+    width: 100%;
+    height: 100%;
+}
+
+.table--masteries td {
+    text-align: center;
+    justify-content: center;
+    border-bottom: 1px solid rgb(254, 254, 254);
+}
+
+.masterypoints__container {
+    text-align: center;
+}
+
+.masterypoints__container img {
+    width: 80px;
+}
+
+.masteries__head {
+    display: flex;
+    flex-direction: column;
+}
+
+.masteries__body {
+    display: block;
+    overflow-y: auto;
+    width: 100%;
+    height: 97.1%;
+}
+
+.masteries__body tr {
+    display: table;
+    table-layout: fixed;
+    margin: 0;
+}
+
+.masteries__body::-webkit-scrollbar {
+    width: 5px;
+}
+
+.masteries__body::-webkit-scrollbar-track {
+    background-color: lightgray;
+    border: solid 1px darkgray;
+}
+
+.masteries__body::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px gray, inset 0 0 6px gray, inset 0 0 6px gray, inset 0 0 6px gray;
+}
+
+.games__container {
+    display: flex;
+    flex: 1 1 auto;
+    background-color: darkgray;
+    width: fit-content;
+    min-height: 100vh;
+}
+
+.table--games {
+    border: 2px solid gray;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+}
+
+.games__body {
+    display: block;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.games__body::-webkit-scrollbar {
+    width: 5px;
+}
+
+.games__body::-webkit-scrollbar-track {
+    background-color: lightgray;
+    border: solid 1px darkgray;
+}
+
+.games__body::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px gray, inset 0 0 6px gray, inset 0 0 6px gray, inset 0 0 6px gray;
+}
+
+.game__row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid black;
+    padding: 3rem;
+}
+
+.row__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0.464);
+    box-shadow: 0px 5px 16px -6px rgba(0, 0, 0, 0.46);
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.row__flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.row__data {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game__result {
+    margin: 0 0 10px;
+}
+
+.game__lose {
+    background-color: rgba(255, 0, 0, 0.364);
+}
+
+.game__win {
+    background-color: rgba(0, 128, 0, 0.364);
+}
+
+.game__champion {
+    display: block;
+    position: relative;
+    padding: 10px;
+}
+
+.champion__icon {
+    width: 80px;
+}
+
+.game__champlevel {
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    width: 30px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game__kda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.kda__summoners {
+    display: flex;
+}
+
+.game__items {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 3px;
+    padding: 10px;
+}
+
+.items__item,
+.summoner {
+    width: 40px;
+}
+
+.items__baratija {
+    grid-column: 4/5;
+    grid-row: 1/2;
+}
+
+.runes__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.rune__icon {
+    width: 45px;
+    height: 45px;
+}
+
+.runes__primary,
+.secondary__container,
+.runes__secondary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.primary__style,
+.secondary__style {
+    width: 32px;
+    height: 32px;
+    margin: 3px 0;
+}
+
+.rune__key {
+    width: 50px;
+}
+
+.primary__rune,
+.secondary__rune {
+    width: 25px;
+    margin: 3px 0;
+}
+
+.ranked__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    border: 2px solid gray;
+    background-color: rgba(128, 128, 128, 0.464);
+}
+
+.ranked__emblem {
+    width: 175px;
+}
+
+.emblem__data__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 1070px) {
+    .profile__container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .games__container {
+        order: 0;
+        height: 100%;
+    }
+
+    .ranked__container {
+        order: 1;
+    }
+
+    .masteries__container {
+        order: 2;
+        height: 180px;
+    }
+
+    .table--masteries {
+        flex-direction: row;
+        width: 97.7vw;
+        height: 170px;
+    }
+
+    .masteries__body {
+        display: flex;
+        width: 97.7vw;
+    }
+
+    .games__body {
+        height: 100vh;
+    }
+}
