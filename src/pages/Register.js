@@ -39,7 +39,7 @@ function Register() {
         delete user.userId
         await axios.post(`${baseUrl}/api/Users`, user)
             .then(r => {
-                console.log(r.data);
+                console.log(r.data, user);
                 if (r.data.summonerId) {
                     axios.get(`${baseUrl}/api/Summoners/${r.data.summonerId}`)
                         .then(res => {
