@@ -15,7 +15,7 @@ function Match() {
     const [otherGame, setOtherGame] = useState({})
 
     const getGamesFromChamp = async (championId, summonerId) => {
-        await axios(`https://localhost:7163/api/Games/${championId}/${summonerId}`)
+        await axios(`https://apiporo.azurewebsites.net/api/Games/${championId}/${summonerId}`)
             .then(res => {
                 getGameData(res)
             })
@@ -23,11 +23,11 @@ function Match() {
 
     const getGameData = async (r) => {
         r.data.map(async (game) => {
-            await axios.get(`https://localhost:7163/api/GameStats?gameId=${game.gameId}`)
+            await axios.get(`https://apiporo.azurewebsites.net/api/GameStats?gameId=${game.gameId}`)
                 .then(async res => {
-                    await axios.get(`https://localhost:7163/api/ChampionMasteries?id=${res.data.championId}`)
+                    await axios.get(`https://apiporo.azurewebsites.net/api/ChampionMasteries?id=${res.data.championId}`)
                         .then(async champName => {
-                            await axios.get(`https://localhost:7163/api/AdvancedGameStats/${res.data.statsId}`)
+                            await axios.get(`https://apiporo.azurewebsites.net/api/AdvancedGameStats/${res.data.statsId}`)
                                 .then(adv => {
                                     let games = {
                                         game: game,

@@ -1,5 +1,5 @@
 import React from "react";
-import '../css/Navbar.css'
+import '../css/navbar.css'
 import '../css/Footer.css'
 
 function NotLogged() {

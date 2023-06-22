@@ -28,11 +28,11 @@ function Profile() {
 
         const getGameData = async (r) => {
             r.data.map(async (game) => {
-                await axios.get(`https://localhost:7163/api/GameStats?gameId=${game.gameId}`)
+                await axios.get(`https://apiporo.azurewebsites.net/api/GameStats?gameId=${game.gameId}`)
                     .then(async res => {
-                        await axios.get(`https://localhost:7163/api/ChampionMasteries?id=${res.data.championId}`)
+                        await axios.get(`https://apiporo.azurewebsites.net/api/ChampionMasteries?id=${res.data.championId}`)
                             .then(async champName => {
-                                await axios.get(`https://localhost:7163/api/AdvancedGameStats/${res.data.statsId}`)
+                                await axios.get(`https://apiporo.azurewebsites.net/api/AdvancedGameStats/${res.data.statsId}`)
                                     .then(adv => {
                                         let games = {
                                             game: game,
@@ -56,9 +56,9 @@ function Profile() {
         }
 
         const getGames = async () => {
-            await axios.get(`https://localhost:7163/api/Games/${user.summonerId}`)
+            await axios.get(`https://apiporo.azurewebsites.net/api/Games/${user.summonerId}`)
                 .then(async r => {
-                    await axios.get(`https://localhost:7163/api/Games?ID=${user.summonerId}&PUUID=${user.puuid}&server=${user.regionId}`)
+                    await axios.get(`https://apiporo.azurewebsites.net/api/Games?ID=${user.summonerId}&PUUID=${user.puuid}&server=${user.regionId}`)
                         .then(res => {
                             getGameData(res)
                         })
@@ -66,10 +66,10 @@ function Profile() {
         }
 
         const getMasteryData = async () => {
-            await axios.get(`https://localhost:7163/api/ChampionMasteries/${user.summonerId}`)
+            await axios.get(`https://apiporo.azurewebsites.net/api/ChampionMasteries/${user.summonerId}`)
                 .then(r => {
                     if (r.data.length < 1) {
-                        axios.post(`https://localhost:7163/api/ChampionMasteries?summonerId=${user.summonerId}&regionId=${user.regionId}`)
+                        axios.post(`https://apiporo.azurewebsites.net/api/ChampionMasteries?summonerId=${user.summonerId}&regionId=${user.regionId}`)
                             .then(res => {
                                 setChampData(res.data)
                             })
@@ -80,7 +80,7 @@ function Profile() {
         }
 
         const getLeagueData = async () => {
-            await axios.get(`https://localhost:7163/api/Leagues?id=${user.summonerId}&regionId=${user.regionId}`)
+            await axios.get(`https://apiporo.azurewebsites.net/api/Leagues?id=${user.summonerId}&regionId=${user.regionId}`)
                 .then(r => {
                     setRankData(r.data)
                 })

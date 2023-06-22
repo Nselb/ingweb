@@ -6,7 +6,7 @@ import '../css/Form.css'
 
 function Register() {
 
-    const baseUrl = 'https://localhost:7163'
+    const baseUrl = 'https://apiporo.azurewebsites.net'
     const navigate = useNavigate();
     const logo = '/images/logo192.png'
 

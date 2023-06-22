@@ -33,14 +33,14 @@ function TopMatches() {
     const getTopGames = async () => {
         
         console.log(dateInMillis);
-        await axios(`https://localhost:7163/api/Games/2/${dateInMillis.date1}/${dateInMillis.date2}`)
+        await axios(`https://apiporo.azurewebsites.net/api/Games/2/${dateInMillis.date1}/${dateInMillis.date2}`)
             .then(r => {
                 r.data.map(async (game) => {
-                    await axios.get(`https://localhost:7163/api/GameStats?gameId=${game.gameId}`)
+                    await axios.get(`https://apiporo.azurewebsites.net/api/GameStats?gameId=${game.gameId}`)
                         .then(async res => {
-                            await axios.get(`https://localhost:7163/api/ChampionMasteries?id=${res.data.championId}`)
+                            await axios.get(`https://apiporo.azurewebsites.net/api/ChampionMasteries?id=${res.data.championId}`)
                                 .then(async champName => {
-                                    await axios.get(`https://localhost:7163/api/AdvancedGameStats/${res.data.statsId}`)
+                                    await axios.get(`https://apiporo.azurewebsites.net/api/AdvancedGameStats/${res.data.statsId}`)
                                         .then(adv => {
                                             let games = {
                                                 game: game,

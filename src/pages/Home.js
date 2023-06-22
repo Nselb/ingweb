@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar, { Footer } from '../components/NavFooter'
-import '../css/Home.css'
+import '../css/home.css'
 
 function Home() {
     return (
