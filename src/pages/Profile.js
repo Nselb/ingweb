@@ -30,6 +30,7 @@ function Profile() {
             r.data.map(async (game) => {
                 await axios.get(`https://apiporo.azurewebsites.net/api/GameStats?gameId=${game.gameId}`)
                     .then(async res => {
+                        console.log(res);
                         await axios.get(`https://apiporo.azurewebsites.net/api/ChampionMasteries?id=${res.data.championId}`)
                             .then(async champName => {
                                 await axios.get(`https://apiporo.azurewebsites.net/api/AdvancedGameStats/${res.data.statsId}`)
