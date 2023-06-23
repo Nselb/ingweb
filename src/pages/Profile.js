@@ -37,12 +37,17 @@ function Profile() {
                     } else {
                         setChampData(r.data)
                     }
+                }).catch(e => {
+                    console.error(e);
+                    axios.post(`https://apiporo.azurewebsites.net/api/ChampionMasteries?summonerId=${user.summonerId}&regionId=${user.regionId}`)
+                            .then(res => {
+                                setChampData(res.data)
+                            })
                 })
         }
         const getLeagueData = async () => {
             await axios.get(`https://apiporo.azurewebsites.net/api/Leagues?id=${user.summonerId}&regionId=${user.regionId}`)
                 .then(r => {
-                    console.log(r);
                     setRankData(r.data)
                 })
         }
