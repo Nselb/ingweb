@@ -35,6 +35,13 @@ function Login() {
         console.log("Fallo");
     }
 
+    const handleGoogleLogin = async r => {
+        await axios.get(`${baseUrl}/api/Users/Login/${r.credential}`)
+            .then(r => {
+                console.log(r.data);
+            })
+    }
+
     const handleSubmit = async e => {
         e.preventDefault();
         await axios.get(`${baseUrl}/api/Users/${user.email}/${user.userPassword}`)
@@ -78,7 +85,7 @@ function Login() {
                             <button className='form__btn' type="submit">Iniciar Sesión</button>
                         </div>
                     </form>
-                    <GoogleLogin onSuccess={handleSubmit} onError={handleError} />
+                    <GoogleLogin onSuccess={handleGoogleLogin} onError={handleError} />
                 </div>
             </div>
             <Footer />
