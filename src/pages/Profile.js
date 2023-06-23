@@ -88,12 +88,10 @@ function Profile() {
                     setRankData(r.data)
                 })
         }
-        if (i > 0) {
-            getMasteryData()
-            getGames()
-            getLeagueData()
-        }
-        i++
+        getMasteryData()
+        getGames()
+        getLeagueData()
+
     }, [user.puuid, user.regionId, user.summonerId, i, gameData])
 
 
@@ -111,7 +109,7 @@ function Profile() {
                     <table className="table--games">
                         <tbody className='games__body'>
                             {gameData.map((game) => (
-                                <GamePlaceholder key={game.game.gameId} game={game} onClick={onRowClick}/>
+                                <GamePlaceholder key={game.game.gameId} game={game} onClick={onRowClick} />
                             ))}
                         </tbody>
                     </table>
