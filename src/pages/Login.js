@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import Navbar, { Footer } from "../components/NavFooter";
 import '../css/Form.css'
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
 
 
@@ -28,6 +29,10 @@ function Login() {
             ...user,
             [name]: value
         })
+    }
+
+    const handleError = () => {
+        console.log("Fallo");
     }
 
     const handleSubmit = async e => {
@@ -73,6 +78,9 @@ function Login() {
                             <button className='form__btn' type="submit">Iniciar Sesión</button>
                         </div>
                     </form>
+                    <GoogleLogin onSuccess={credentialResponse => {
+                        console.log(credentialResponse);
+                    }} onError={handleError} />
                 </div>
             </div>
             <Footer />

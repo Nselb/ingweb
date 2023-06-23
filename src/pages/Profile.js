@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ChampionPlaceholder from '../components/ChampionPlaceholder';
-import GamePlaceholder from '../components/GamePlaceholder';
 import Navbar, { Footer } from '../components/NavFooter';
 import RankPlaceholder from '../components/RankPlaceholder';
 import '../css/Profile.css'
@@ -11,13 +10,9 @@ function Profile() {
 
     const navigate = useNavigate()
     const [champData, setChampData] = useState([])
-    const [gameData, setGameData] = useState([])
     const [rankData, setRankData] = useState([])
     const user = JSON.parse(localStorage.getItem('user'))
     let i = 0
-    const onRowClick = (data) => {
-        navigate('/match/' + data.game.gameId, { state: data })
-    }
     useEffect(() => {
         if (!localStorage.getItem('user')) {
             navigate('/')
@@ -54,7 +49,7 @@ function Profile() {
         getMasteryData()
         getLeagueData()
 
-    }, [user.puuid, user.regionId, user.summonerId, i, gameData])
+    }, [user.puuid, user.regionId, user.summonerId, i])
 
 
     return (
@@ -65,15 +60,6 @@ function Profile() {
                     {rankData.map((league) => (
                         <RankPlaceholder key={league.id} league={league} />
                     ))}
-                </section>
-                <section className='games__container'>
-                    <table className="table--games">
-                        <tbody className='games__body'>
-                            {gameData.map((game) => (
-                                <GamePlaceholder key={game.game.gameId} game={game} onClick={onRowClick} />
-                            ))}
-                        </tbody>
-                    </table>
                 </section>
                 <section className='masteries__container'>
                     <table className='table--masteries'>
