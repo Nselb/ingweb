@@ -66,7 +66,7 @@ function Register() {
         console.log("Fallo");
     }
     const handleGoogleRegister = async (data) => {
-        await axios.post(`${baseUrl}/api/Users/GoogleRegister?token=${data.credential}`, user)
+        await axios.get(`${baseUrl}/api/Users/GoogleRegister?token=${data.credential}`, user)
             .then(r => {
                 console.log(r.data, user);
                 if (r.data.summonerId) {
