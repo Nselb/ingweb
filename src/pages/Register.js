@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import '../css/Form.css'
+import { GoogleLogin } from '@react-oauth/google';
 
 function Register() {
 
@@ -34,10 +35,38 @@ function Register() {
         }
     }, [navigate])
 
-    const handleSubmit = async event => {
-        event.preventDefault();
+    const handleSubmit = async e => {
         delete user.userId
         await axios.post(`${baseUrl}/api/Users`, user)
+            .then(r => {
+                console.log(r.data, user);
+                if (r.data.summonerId) {
+                    axios.get(`${baseUrl}/api/Summoners/${r.data.summonerId}`)
+                        .then(res => {
+                            localStorage.setItem('user', JSON.stringify({
+                                email: r.data.email,
+                                regionId: r.data.regionId,
+                                summonerName: r.data.summonerName,
+                                summonerId: r.data.summonerId,
+                                puuid: res.data.puuid,
+                                summonerLevel: res.data.summonerLevel,
+                                iconId: res.data.profileIconID
+                            }))
+                            navigate('/')
+                        })
+                } else {
+                    //TODO: display error msg
+                }
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
+    const handleError = () => {
+        console.log("Fallo");
+    }
+    const handleGoogleRegister = async (data) => {
+        await axios.post(`${baseUrl}/api/Users/GoogleRegister?token=${data.credential}`, user)
             .then(r => {
                 console.log(r.data, user);
                 if (r.data.summonerId) {
@@ -76,8 +105,6 @@ function Register() {
                     </div>
                     <form method='post' onSubmit={handleSubmit}>
                         <div className='form'>
-                            <input className='form__input' type="email" name='email' placeholder='E-mail' onChange={handleChange} />
-                            <input className='form__input' type="password" name="userPassword" placeholder='Contraseña' onChange={handleChange} />
                             <div className='form__input-select__container'>
                                 <input className='form__input form__input--select' type="text" placeholder='Nombre de invocador' name='summonerName' onChange={handleChange} />
                                 <select className='form__select' name='regionId' onChange={handleChange}>
@@ -94,9 +121,9 @@ function Register() {
                                     <option value="RU">RU</option>
                                 </select>
                             </div>
-                            <button className='form__btn' type="submit">Registrarse</button>
                         </div>
                     </form>
+                    <GoogleLogin onSuccess={handleGoogleRegister} onError={handleError}></GoogleLogin>
                 </div>
             </div>
             <Footer />

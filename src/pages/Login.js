@@ -37,9 +37,26 @@ function Login() {
 
     const handleGoogleLogin = async r => {
         console.log(r);
-        await axios.get(`${baseUrl}/api/Users/Login/${r.credential}`)
+        await axios.get(`${baseUrl}/api/Users/Login?token=${r.credential}`)
             .then(r => {
-                console.log(r.data);
+                if (r.email === "Usuario No Registrado") {
+                    navigate("/register");
+                }
+                else {
+                    axios.get(`${baseUrl}/api/Summoners/${r.summonerId}`)
+                        .then(res => {
+                            localStorage.setItem('user', JSON.stringify({
+                                email: r.email,
+                                regionId: r.regionId,
+                                summonerName: r.summonerName,
+                                summonerId: r.summonerId,
+                                puuid: res.data.puuid,
+                                summonerLevel: res.data.summonerLevel,
+                                iconId: res.data.profileIconID
+                            }))
+                            navigate('/')
+                        })
+                }
             })
     }
 
