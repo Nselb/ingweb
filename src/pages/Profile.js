@@ -25,7 +25,7 @@ function Profile() {
     }, [navigate])
 
     useEffect(() => {
-        console.log("Sirve la wea?")
+        console.log(user)
         const getGameData = async (r) => {
             r.data.map(async (game) => {
                 await axios.get(`https://apiporo.azurewebsites.net/api/GameStats?gameId=${game.gameId}`)
@@ -59,6 +59,7 @@ function Profile() {
         const getGames = async () => {
             await axios.get(`https://apiporo.azurewebsites.net/api/Games/${user.summonerId}`)
                 .then(async r => {
+                    console.log(r);
                     await axios.get(`https://apiporo.azurewebsites.net/api/Games?ID=${user.summonerId}&PUUID=${user.puuid}&server=${user.regionId}`)
                         .then(res => {
                             getGameData(res)
@@ -69,6 +70,7 @@ function Profile() {
         const getMasteryData = async () => {
             await axios.get(`https://apiporo.azurewebsites.net/api/ChampionMasteries/${user.summonerId}`)
                 .then(r => {
+                    console.log(r);
                     if (r.data.length < 1) {
                         axios.post(`https://apiporo.azurewebsites.net/api/ChampionMasteries?summonerId=${user.summonerId}&regionId=${user.regionId}`)
                             .then(res => {
