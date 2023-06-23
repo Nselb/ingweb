@@ -25,7 +25,7 @@ function Profile() {
     }, [navigate])
 
     useEffect(() => {
-
+        console.log("Sirve la wea?")
         const getGameData = async (r) => {
             r.data.map(async (game) => {
                 await axios.get(`https://apiporo.azurewebsites.net/api/GameStats?gameId=${game.gameId}`)
