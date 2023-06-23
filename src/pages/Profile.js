@@ -25,48 +25,6 @@ function Profile() {
     }, [navigate])
 
     useEffect(() => {
-        console.log(user)
-        const getGameData = async (r) => {
-            r.data.map(async (game) => {
-                await axios.get(`https://apiporo.azurewebsites.net/api/GameStats?gameId=${game.gameId}`)
-                    .then(async res => {
-                        console.log(res);
-                        await axios.get(`https://apiporo.azurewebsites.net/api/ChampionMasteries?id=${res.data.championId}`)
-                            .then(async champName => {
-                                await axios.get(`https://apiporo.azurewebsites.net/api/AdvancedGameStats/${res.data.statsId}`)
-                                    .then(adv => {
-                                        let games = {
-                                            game: game,
-                                            stats: res.data,
-                                            advStats: adv.data,
-                                            championName: champName.data
-                                        }
-                                        setGameData(oldArray => [
-                                            ...oldArray,
-                                            games
-                                        ])
-                                        setGameData(data => {
-                                            const sorted = [...data]
-                                            sorted.sort((a, b) => b.game.gameStartTimestamp - a.game.gameStartTimestamp)
-                                            return sorted
-                                        })
-                                    })
-                            })
-                    })
-            })
-        }
-
-        const getGames = async () => {
-            await axios.get(`https://apiporo.azurewebsites.net/api/Games/${user.summonerId}`)
-                .then(async r => {
-                    console.log(r);
-                    await axios.get(`https://apiporo.azurewebsites.net/api/Games?ID=${user.summonerId}&PUUID=${user.puuid}&server=${user.regionId}`)
-                        .then(res => {
-                            getGameData(res)
-                        })
-                })
-        }
-
         const getMasteryData = async () => {
             await axios.get(`https://apiporo.azurewebsites.net/api/ChampionMasteries/${user.summonerId}`)
                 .then(r => {
@@ -81,15 +39,14 @@ function Profile() {
                     }
                 })
         }
-
         const getLeagueData = async () => {
             await axios.get(`https://apiporo.azurewebsites.net/api/Leagues?id=${user.summonerId}&regionId=${user.regionId}`)
                 .then(r => {
+                    console.log(r);
                     setRankData(r.data)
                 })
         }
         getMasteryData()
-        getGames()
         getLeagueData()
 
     }, [user.puuid, user.regionId, user.summonerId, i, gameData])
@@ -100,7 +57,6 @@ function Profile() {
             <Navbar />
             <div className='profile__container'>
                 <section className="ranked__container">
-                    <button>Actualizar datos</button>
                     {rankData.map((league) => (
                         <RankPlaceholder key={league.id} league={league} />
                     ))}
