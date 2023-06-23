@@ -78,9 +78,7 @@ function Login() {
                             <button className='form__btn' type="submit">Iniciar Sesión</button>
                         </div>
                     </form>
-                    <GoogleLogin onSuccess={credentialResponse => {
-                        console.log(credentialResponse);
-                    }} onError={handleError} />
+                    <GoogleLogin onSuccess={handleSubmit} onError={handleError} />
                 </div>
             </div>
             <Footer />
