@@ -36,6 +36,7 @@ function Login() {
     }
 
     const handleGoogleLogin = async r => {
+        console.log(r);
         await axios.get(`${baseUrl}/api/Users/Login/${r.credential}`)
             .then(r => {
                 console.log(r.data);
