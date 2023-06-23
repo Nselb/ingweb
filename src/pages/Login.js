@@ -40,7 +40,7 @@ function Login() {
         await axios.get(`${baseUrl}/api/Users/Login?token=${r.credential}`)
             .then(r => {
                 console.log(r);
-                if (r.email === "Usuario No Registrado") {
+                if (r.data.email === "Usuario No Registrado") {
                     navigate("/register");
                 }
                 else {
@@ -48,10 +48,10 @@ function Login() {
                         .then(res => {
                             console.log(res);
                             localStorage.setItem('user', JSON.stringify({
-                                email: r.email,
-                                regionId: r.regionId,
-                                summonerName: r.summonerName,
-                                summonerId: r.summonerId,
+                                email: r.data.email,
+                                regionId: r.data.regionId,
+                                summonerName: r.data.summonerName,
+                                summonerId: r.data.summonerId,
                                 puuid: res.data.puuid,
                                 summonerLevel: res.data.summonerLevel,
                                 iconId: res.data.profileIconID
